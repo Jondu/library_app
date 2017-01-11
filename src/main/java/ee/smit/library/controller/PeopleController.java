@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class PeopleController {
+
     @Autowired
     private PeopleDao peopleDao;
 
