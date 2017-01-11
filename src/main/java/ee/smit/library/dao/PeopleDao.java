@@ -43,4 +43,11 @@ public class PeopleDao {
         );
 
     }
+
+    public void addUser(Person person) {
+        jdbcTemplate.update(
+                "INSERT INTO people (name, phone) VALUES (?,?)",
+                person.getName(), person.getPhone()
+        );
+    }
 }
