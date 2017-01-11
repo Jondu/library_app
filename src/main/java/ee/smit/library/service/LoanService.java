@@ -18,6 +18,7 @@ public class LoanService {
 
     @Autowired
     private BooksDao booksDao;
+
     @Autowired
     private PeopleDao peopleDao;
 
@@ -29,15 +30,13 @@ public class LoanService {
 
     }
 
-
     public List<Book> getAllBooks() {
-        return booksDao.getAllBooks();
+        return booksDao.getAllAvailableBooks();
     }
 
     public List<LoanedBook> getUnavailableBooks() {
         return booksDao.getUnavailableBooks();
     }
-
 
     public void returnBook(LoanedBook loanedBook) {
         Book book = loanedBook.getBook();

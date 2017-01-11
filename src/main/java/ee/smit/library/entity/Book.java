@@ -16,9 +16,6 @@ public class Book {
 
     private boolean available;
 
-
-
-
     public Long getId() {
         return id;
     }

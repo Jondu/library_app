@@ -1,8 +1,5 @@
 package ee.smit.library.entity;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import lombok.NoArgsConstructor;
-
 /**
  * Created by Hando.
  */
@@ -11,7 +8,9 @@ public class LoanedBook {
     private Book book;
     private Person loanedTo;
 
-    public LoanedBook() {}
+    public LoanedBook() {
+    }
+
     public LoanedBook(Book book, Person loanedTo) {
         this.book = book;
         this.loanedTo = loanedTo;

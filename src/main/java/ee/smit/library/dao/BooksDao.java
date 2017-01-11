@@ -1,6 +1,7 @@
 package ee.smit.library.dao;
-import ee.smit.library.entity.LoanedBook;
+
 import ee.smit.library.entity.Book;
+import ee.smit.library.entity.LoanedBook;
 import ee.smit.library.entity.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,7 +21,7 @@ public class BooksDao {
     @Autowired
     protected JdbcTemplate jdbcTemplate;
 
-    public List<Book> getAllBooks() {
+    public List<Book> getAllAvailableBooks() {
         return jdbcTemplate.query("SELECT * FROM raamatud WHERE not exists(select * FROM people " +
                         "WHERE people.book_id = raamatud.id )",
                 (rs, rowNum) -> {
@@ -48,7 +49,7 @@ public class BooksDao {
         );
     }
 
-    public void lendBook(Book book){
+    public void lendBook(Book book) {
         jdbcTemplate.update(
                 "UPDATE raamatud SET status=(?) WHERE title=(?)",
                 false, book.getTitle()
@@ -56,7 +57,7 @@ public class BooksDao {
 
     }
 
-    public void returnBook(Book book){
+    public void returnBook(Book book) {
         jdbcTemplate.update(
                 "UPDATE raamatud SET status=(?) WHERE title=(?)",
                 true, book.getTitle()
@@ -65,7 +66,7 @@ public class BooksDao {
     }
 
 
-    public void addBook(Book book){
+    public void addBook(Book book) {
         jdbcTemplate.update(
                 "INSERT INTO raamatud (title, status) VALUES (?,?) " +
                         "ON CONFLICT DO NOTHING",
@@ -76,7 +77,7 @@ public class BooksDao {
     public Book findBookByName(Book book) {
         return jdbcTemplate.queryForObject(
                 "SELECT * FROM raamatud WHERE title = ?",
-                new Object[] { book.getTitle() },
+                new Object[]{book.getTitle()},
                 new RowMapper<Book>() {
                     public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
                         Book book = new Book();
