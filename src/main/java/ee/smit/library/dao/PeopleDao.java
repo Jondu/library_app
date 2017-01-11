@@ -38,7 +38,7 @@ public class PeopleDao {
 
     public void returnBook(Person person) {
         jdbcTemplate.update(
-                "UPDATE people SET book_id=null WHERE id=(?)",
+                "UPDATE people SET book_id=NULL WHERE id=(?)",
                 person.getId()
         );
 

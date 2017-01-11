@@ -37,4 +37,12 @@ public class LoanService {
     public List<LoanedBook> getUnavailableBooks() {
         return booksDao.getUnavailableBooks();
     }
+
+
+    public void returnBook(LoanedBook loanedBook) {
+        Book book = loanedBook.getBook();
+        Person person = loanedBook.getLoanedTo();
+        booksDao.returnBook(book);
+        peopleDao.returnBook(person);
+    }
 }

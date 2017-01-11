@@ -33,16 +33,16 @@ public class BooksDao {
     }
 
     public List<LoanedBook> getUnavailableBooks() {
-        return jdbcTemplate.query("SELECT raamatud.title, raamatud.status, raamatud.id, people.name, people.phone, " +
+        return jdbcTemplate.query("SELECT raamatud.title, raamatud.status, raamatud.id, people.name, people.phone, people.id as personId, " +
                         "people.book_id FROM raamatud INNER JOIN people ON raamatud.id = people.book_id",
                 (rs, rowNum) -> {
                     Book book = new Book();
                     Person person = new Person();
                     person.setName(rs.getString("name"));
                     person.setPhone(rs.getLong("phone"));
+                    person.setId(rs.getLong("personId"));
                     book.setTitle(rs.getString("title"));
                     book.setAvailable(rs.getBoolean("status"));
-                    book.setPerson(person);
                     return new LoanedBook(book, person);
                 }
         );

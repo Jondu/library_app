@@ -10,7 +10,7 @@ public class LoanedBook {
 
     private Book book;
     private Person loanedTo;
-    @JsonCreator
+
     public LoanedBook() {}
     public LoanedBook(Book book, Person loanedTo) {
         this.book = book;

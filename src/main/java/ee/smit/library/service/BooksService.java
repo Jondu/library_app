@@ -2,6 +2,7 @@ package ee.smit.library.service;
 
 import ee.smit.library.dao.BooksDao;
 import ee.smit.library.entity.Book;
+import ee.smit.library.entity.LoanedBook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,4 @@ public class BooksService {
         booksDao.addBook(book);
     }
 
-    public void returnBook(Book book) {
-        booksDao.returnBook(book);
-    }
 }

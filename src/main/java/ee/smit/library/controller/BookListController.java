@@ -48,8 +48,8 @@ public class BookListController {
 
     @RequestMapping(value = "/return", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity returnBook(@RequestBody Book book) {
-        booksService.returnBook(book);
+    public ResponseEntity returnBook(@RequestBody LoanedBook book) {
+        loanService.returnBook(book);
         return ResponseEntity.ok(book);
     }
 

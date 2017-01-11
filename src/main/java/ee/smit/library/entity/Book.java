@@ -16,7 +16,7 @@ public class Book {
 
     private boolean available;
 
-    private Person person;
+
 
 
     public Long getId() {
@@ -43,11 +43,4 @@ public class Book {
         this.available = available;
     }
 
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
 }
