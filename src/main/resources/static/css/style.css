@@ -1,0 +1,21 @@
+body{
+    background: url('background.jpg');
+}
+
+h2{
+    color:white;
+    }
+.borderless td, .borderless th {
+    border: none;
+    border-bottom:none!important;
+    border-top:none!important;
+}
+
+.available_book_table thead,
+.unavailable_book_table thead{
+    background:white;
+}
+.available_book_table tbody,
+.unavailable_book_table tbody{
+    background-color: rgba(255, 255, 255, 0.67);
+}
