@@ -6,7 +6,10 @@ import ee.smit.library.service.BooksService;
 import ee.smit.library.service.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * Created by Hando.
@@ -34,7 +37,7 @@ public class BookListController {
 
     @RequestMapping(value = "/addbook", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity addBook(@RequestBody Book book) {
+    public ResponseEntity addBook(@RequestBody @Validated Book book) {
         booksService.addBook(book);
         return ResponseEntity.ok(book);
     }

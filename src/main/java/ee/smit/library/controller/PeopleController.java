@@ -1,11 +1,13 @@
 package ee.smit.library.controller;
 
-import ee.smit.library.dao.PeopleDao;
 import ee.smit.library.entity.Person;
 import ee.smit.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * Created by Hando.
@@ -24,7 +26,7 @@ public class PeopleController {
 
     @RequestMapping(value = "/adduser", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity addUser(@RequestBody Person person){
+    public ResponseEntity addUser(@RequestBody @Validated Person person){
         userService.addUser(person);
         return ResponseEntity.ok(person);
     }

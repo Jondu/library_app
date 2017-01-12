@@ -1,5 +1,9 @@
 package ee.smit.library.entity;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.NotNull;
+
 /**
  * Created by Hando.
  */
@@ -7,7 +11,11 @@ package ee.smit.library.entity;
 public class Person {
 
     private Long id;
+
+    @NotEmpty
     private String name;
+
+    @NotNull
     private Long phone;
 
     public String getName() {

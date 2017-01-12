@@ -1,6 +1,5 @@
 function laenuta(param) {
     var title = jQuery(param).parent().parent().find(".book_title").html();
-    console.log(title);
     var userId = jQuery(param).parent().prev("td").find("select").val();
     var book = {
         "book": {
@@ -19,7 +18,8 @@ function laenuta(param) {
         success: function(data) {
             jQuery(param).parent().parent().remove();
             get_unavailable_books();
-        }, error: function(XMLHttpRequest, textStatus, errorThrown) {
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
             alert("Please select a user for the book");
         }
     });
@@ -58,14 +58,14 @@ function getPeople() {
             jQuery(".available_people_list").empty();
             jQuery(".available_people_list").append("<option class='start_person_choice'>Choose a name</option>");
             $.each(data, function(key, data_item) {
-                jQuery(".available_people_list").append("<option value="+data_item.id+">" + data_item.name+ "</option>");
+                jQuery(".available_people_list").append("<option value=" + data_item.id + ">" + data_item.name + "</option>");
             })
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {}
     });
 }
 
-function get_unavailable_books(){
+function get_unavailable_books() {
     jQuery.ajax({
         type: "GET",
         dataType: 'JSON',
@@ -73,7 +73,7 @@ function get_unavailable_books(){
         success: function(data) {
             jQuery(".unavailable_book_table tbody").empty();
             $.each(data, function(key, data_item) {
-                jQuery(".unavailable_book_table tbody").append("<tr><td class='book_title'>" + data_item.book.title + "</td><td class='book_user' data-userid="+data_item.loanedTo.id+">" + data_item.loanedTo.name + "</td><td>" + data_item.loanedTo.phone + "</td><td><button onclick='tagasta(this)' class='laenuta btn btn-success'>Tagasta</button></td></tr>");
+                jQuery(".unavailable_book_table tbody").append("<tr><td class='book_title'>" + data_item.book.title + "</td><td class='book_user' data-userid=" + data_item.loanedTo.id + ">" + data_item.loanedTo.name + "</td><td>" + data_item.loanedTo.phone + "</td><td><button onclick='tagasta(this)' class='laenuta btn btn-success'>Tagasta</button></td></tr>");
             })
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {}
@@ -81,7 +81,7 @@ function get_unavailable_books(){
 }
 
 
-function get_available_books(){
+function get_available_books() {
     jQuery.ajax({
         type: "GET",
         dataType: 'JSON',
@@ -98,13 +98,13 @@ function get_available_books(){
 
 }
 
-function add_user(){
+function add_user() {
     var name = jQuery("input[name='name']").val();
     var phone = jQuery("input[name='phone']").val();
     var user = {
-            "name": name,
-            "phone": phone
-        }
+        "name": name,
+        "phone": phone
+    }
     var jsonuser = JSON.stringify(user);
     jQuery.ajax({
         type: "POST",
@@ -114,15 +114,18 @@ function add_user(){
         success: function(data) {
             getPeople();
         },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {}
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("Please fill both fields!")
+        }
     });
 
 }
-function add_book(){
+
+function add_book() {
     var title = jQuery("input[name='book_title']").val();
     var book = {
-            "title": title
-        }
+        "title": title
+    }
     var jsonbook = JSON.stringify(book);
     jQuery.ajax({
         type: "POST",
@@ -130,22 +133,27 @@ function add_book(){
         data: jsonbook,
         url: "http://localhost:8080/raamatukogu/addbook",
         success: function(data) {
-             get_available_books();
+            get_available_books();
         },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {}
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+        alert("Book must have a title!")
+        }
     });
 
 }
 jQuery(document).ready(function() {
-    jQuery(".add_user button").click(function(){
+
+    jQuery(".add_user button").click(function() {
         add_user();
         jQuery("input[name='phone']").val('');
         jQuery("input[name='name']").val('');
     });
-    jQuery(".add_book button").click(function(){
+
+    jQuery(".add_book button").click(function() {
         add_book();
         jQuery("input[name='book_title']").val('');
     });
+
     get_unavailable_books();
     get_available_books();
 });

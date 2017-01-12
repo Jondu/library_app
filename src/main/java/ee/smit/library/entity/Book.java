@@ -1,17 +1,18 @@
 package ee.smit.library.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by Hando.
  */
-@NoArgsConstructor
 public class Book {
 
-    @JsonIgnore
     private Long id;
 
+    @NotEmpty
     private String title;
 
     private boolean available;
