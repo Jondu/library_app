@@ -1,4 +1,4 @@
-package ee.smit.library.entity;
+package ee.smit.library.dto;
 
 import org.hibernate.validator.constraints.NotEmpty;
 

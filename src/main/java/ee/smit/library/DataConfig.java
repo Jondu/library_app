@@ -15,7 +15,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableAutoConfiguration
-@EntityScan(basePackages = {"ee.smit.library.entity"})
+@EntityScan(basePackages = {"ee.smit.library.dto"})
 @PropertySource("classpath:db.properties")
 public class DataConfig {
 

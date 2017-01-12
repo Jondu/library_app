@@ -1,7 +1,7 @@
 package ee.smit.library;
 
 import com.jayway.restassured.RestAssured;
-import ee.smit.library.entity.User;
+import ee.smit.library.dto.User;
 import ee.smit.library.service.UserService;
 import org.junit.After;
 import org.junit.BeforeClass;
@@ -61,14 +61,14 @@ public class PeopleIntegrationTests {
 
 
     @Test
-    public void availablePeople() {
+    public void availablePeopleTest() {
         userService.addUser(testUser);
         given().when().get("/people").then()
                 .body(containsString(testUser.getName()));
     }
 
     @Test
-    public void addUser() {
+    public void addUserTest() {
         given()
                 .contentType("application/json")
                 .body(testUser)

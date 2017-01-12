@@ -33,6 +33,8 @@ dependencies {
     runtime('org.postgresql:postgresql')
     // https://mvnrepository.com/artifact/com.jayway.restassured/rest-assured
     compile group: 'com.jayway.restassured', name: 'rest-assured', version: '2.9.0'
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '1.4.3.RELEASE'
 
 
 }

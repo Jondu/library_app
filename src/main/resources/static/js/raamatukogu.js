@@ -14,7 +14,7 @@ function laenuta(param) {
         type: "POST",
         data: jsonbook,
         contentType: "application/json;",
-        url: "http://localhost:8080/raamatukogu/loan",
+        url: location+"loan",
         success: function(data) {
             jQuery(param).parent().parent().remove();
             get_unavailable_books();
@@ -41,7 +41,7 @@ function tagasta(param) {
         type: "POST",
         data: jsonbook,
         contentType: "application/json;",
-        url: "http://localhost:8080/raamatukogu/return",
+        url: location+"return",
         success: function(data) {
             jQuery(param).parent().parent().remove();
             get_available_books();
@@ -53,7 +53,7 @@ function getPeople() {
     jQuery.ajax({
         type: "GET",
         dataType: 'JSON',
-        url: "http://localhost:8080/raamatukogu/people",
+        url: location+"people",
         success: function(data) {
             jQuery(".available_people_list").empty();
             jQuery(".available_people_list").append("<option class='start_person_choice'>Choose a name</option>");
@@ -68,14 +68,14 @@ function get_unavailable_books() {
     jQuery.ajax({
         type: "GET",
         dataType: 'JSON',
-        url: "http://localhost:8080/raamatukogu/unavailable",
+        url: location+"unavailable",
         success: function(data) {
             jQuery(".unavailable_book_table tbody").empty();
             $.each(data, function(key, data_item) {
                 jQuery(".unavailable_book_table tbody").append("<tr><td class='book_title'>" + data_item.book.title +
                 "</td><td class='book_user' data-userid=" + data_item.loanedTo.id + ">" + data_item.loanedTo.name +
                 "</td><td>" + data_item.loanedTo.phone +
-                "</td><td><button onclick='tagasta(this)' class='laenuta btn btn-success'>Tagasta</button></td></tr>");
+                "</td><td><button onclick='tagasta(this)' class='laenuta btn btn-success'>Return</button></td></tr>");
             })
             getPeople();
         }
@@ -87,12 +87,12 @@ function get_available_books() {
     jQuery.ajax({
         type: "GET",
         dataType: 'JSON',
-        url: "http://localhost:8080/raamatukogu/books",
+        url: location+"books",
         success: function(data) {
             jQuery(".available_book_table tbody").empty();
             $.each(data, function(key, data_item) {
                 jQuery(".available_book_table tbody").append("<tr><td class='book_title''>" + data_item.title +
-                "</td><td><select class='available_people_list'><option class='start_person_choice'>Choose a name</option></select></td><td><button onclick='laenuta(this)' class='laenuta btn btn-warning'>Laenuta</button></td></tr>");
+                "</td><td><select class='available_people_list'><option class='start_person_choice'>Choose a name</option></select></td><td><button onclick='laenuta(this)' class='laenuta btn btn-warning'>Lend</button></td></tr>");
             });
             getPeople();
         }
@@ -112,7 +112,7 @@ function add_user() {
         type: "POST",
         contentType: "application/json;",
         data: jsonuser,
-        url: "http://localhost:8080/raamatukogu/adduser",
+        url: location+"adduser",
         success: function(data) {
             getPeople();
         },
@@ -133,7 +133,7 @@ function add_book() {
         type: "POST",
         contentType: "application/json;",
         data: jsonbook,
-        url: "http://localhost:8080/raamatukogu/addbook",
+        url: location+"addbook",
         success: function(data) {
             get_available_books();
         },

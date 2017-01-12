@@ -1,7 +1,7 @@
 package ee.smit.library.dao;
 
-import ee.smit.library.entity.Book;
-import ee.smit.library.entity.User;
+import ee.smit.library.dto.Book;
+import ee.smit.library.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

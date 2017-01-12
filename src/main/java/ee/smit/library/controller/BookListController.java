@@ -1,7 +1,7 @@
 package ee.smit.library.controller;
 
-import ee.smit.library.entity.Book;
-import ee.smit.library.entity.LoanedBook;
+import ee.smit.library.dto.Book;
+import ee.smit.library.dto.LoanedBook;
 import ee.smit.library.service.BooksService;
 import ee.smit.library.service.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;

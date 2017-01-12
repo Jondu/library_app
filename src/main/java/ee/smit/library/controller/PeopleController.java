@@ -1,6 +1,6 @@
 package ee.smit.library.controller;
 
-import ee.smit.library.entity.User;
+import ee.smit.library.dto.User;
 import ee.smit.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

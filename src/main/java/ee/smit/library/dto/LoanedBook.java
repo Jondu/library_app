@@ -1,4 +1,4 @@
-package ee.smit.library.entity;
+package ee.smit.library.dto;
 
 /**
  * Created by Hando.
