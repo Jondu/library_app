@@ -18,8 +18,8 @@ public class AvailableUsers extends AbstractHealthIndicator {
 
     @Override
     protected void doHealthCheck(Health.Builder builder) throws Exception {
-        HttpStatus diskFreeInBytes = peopleController.availablePeople().getStatusCode();
-        if (diskFreeInBytes.equals(HttpStatus.OK)) {
+        HttpStatus availableUser = peopleController.availablePeople().getStatusCode();
+        if (availableUser.equals(HttpStatus.OK)) {
             builder.up();
         } else {
             builder.down();

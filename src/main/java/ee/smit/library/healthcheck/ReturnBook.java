@@ -51,8 +51,8 @@ public class ReturnBook extends AbstractHealthIndicator {
         }
         LoanedBook lentbook = new LoanedBook(testBook,testUser);
         loanService.loan(lentbook);
-        HttpStatus diskFreeInBytes = bookListController.returnBook(lentbook).getStatusCode();
-        if (diskFreeInBytes.equals(HttpStatus.OK)) {
+        HttpStatus returnBook = bookListController.returnBook(lentbook).getStatusCode();
+        if (returnBook.equals(HttpStatus.OK)) {
             builder.up();
         } else {
             builder.down();

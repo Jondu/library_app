@@ -25,8 +25,8 @@ public class AddUser extends AbstractHealthIndicator {
         User testUser = new User();
         testUser.setPhone((long) 3434343);
         testUser.setName("testuser");
-        HttpStatus diskFreeInBytes = peopleController.addUser(testUser).getStatusCode();
-        if (diskFreeInBytes.equals(HttpStatus.OK)) {
+        HttpStatus addUser = peopleController.addUser(testUser).getStatusCode();
+        if (addUser.equals(HttpStatus.OK)) {
             builder.up();
         } else {
             builder.down();

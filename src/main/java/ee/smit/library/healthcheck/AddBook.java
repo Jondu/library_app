@@ -27,8 +27,8 @@ public class AddBook extends AbstractHealthIndicator{
     protected void doHealthCheck(Health.Builder builder) throws Exception {
         Book book = new Book();
         book.setTitle("testbook");
-        HttpStatus diskFreeInBytes = bookListController.addBook(book).getStatusCode();
-        if (diskFreeInBytes.equals(HttpStatus.OK)) {
+        HttpStatus addBook = bookListController.addBook(book).getStatusCode();
+        if (addBook.equals(HttpStatus.OK)) {
             builder.up();
         } else {
             builder.down();

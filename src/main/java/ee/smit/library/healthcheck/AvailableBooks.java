@@ -19,8 +19,8 @@ public class AvailableBooks extends AbstractHealthIndicator {
 
     @Override
     protected void doHealthCheck(Health.Builder builder) throws Exception {
-        HttpStatus diskFreeInBytes = bookListController.listAllBooks().getStatusCode();
-        if (diskFreeInBytes.equals(HttpStatus.OK)) {
+        HttpStatus allBooks = bookListController.listAllBooks().getStatusCode();
+        if (allBooks.equals(HttpStatus.OK)) {
             builder.up();
         } else {
             builder.down();

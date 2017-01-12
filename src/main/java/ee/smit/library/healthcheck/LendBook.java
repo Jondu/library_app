@@ -46,8 +46,8 @@ public class LendBook extends AbstractHealthIndicator {
             }
         }
         LoanedBook lentbook = new LoanedBook(testBook, testUser);
-        HttpStatus diskFreeInBytes = bookListController.loanBook(lentbook).getStatusCode();
-        if (diskFreeInBytes.equals(HttpStatus.OK)) {
+        HttpStatus loanBook = bookListController.loanBook(lentbook).getStatusCode();
+        if (loanBook.equals(HttpStatus.OK)) {
             builder.up();
         } else {
             builder.down();
