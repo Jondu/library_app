@@ -8,14 +8,12 @@ import org.springframework.boot.actuate.health.AbstractHealthIndicator;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by Hando.
  */
 @Component
-@Transactional
-public class AddBook extends AbstractHealthIndicator{
+public class AddBook extends AbstractHealthIndicator {
 
     @Autowired
     private BookListController bookListController;

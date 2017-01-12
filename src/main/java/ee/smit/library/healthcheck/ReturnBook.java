@@ -38,7 +38,7 @@ public class ReturnBook extends AbstractHealthIndicator {
         Book testBook = new Book();
         testBook.setTitle("testbook");
         User testUser = new User();
-        testUser.setPhone((long)3434343);
+        testUser.setPhone((long) 3434343);
         testUser.setName("testuser");
         booksService.addBook(testBook);
         userService.addUser(testUser);
@@ -49,7 +49,7 @@ public class ReturnBook extends AbstractHealthIndicator {
                 testUser.setId(user.getId());
             }
         }
-        LoanedBook lentbook = new LoanedBook(testBook,testUser);
+        LoanedBook lentbook = new LoanedBook(testBook, testUser);
         loanService.loan(lentbook);
         HttpStatus returnBook = bookListController.returnBook(lentbook).getStatusCode();
         if (returnBook.equals(HttpStatus.OK)) {

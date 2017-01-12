@@ -59,7 +59,7 @@ public class BookListIntegrationTests {
 
         String basePath = System.getProperty("server.base");
         if (basePath == null) {
-            basePath = "/raamatukogu/";
+            basePath = "/library/";
         }
         RestAssured.basePath = basePath;
 

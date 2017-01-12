@@ -81,6 +81,7 @@ public class BooksDao {
         );
 
     }
+
     public Book findBookByName(Book book) {
         return jdbcTemplate.queryForObject(
                 "SELECT * FROM raamatud WHERE title = ?",
