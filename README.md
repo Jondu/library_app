@@ -11,6 +11,7 @@ Front end with bootstrap, jQuery
 1. Uses postgres database named "personallibrary", user and password information must be set at db.properties.  
 2. Port set to 8080.
 2. Context path /library
+3. Database will be populated with dummy data upon successful launch.
 
 ###Known issues
 1. No way to differentiate between users with same names. Can be avoided by writing in full name.
