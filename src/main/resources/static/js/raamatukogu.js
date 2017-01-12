@@ -101,13 +101,11 @@ function get_available_books(){
 function add_user(){
     var name = jQuery("input[name='name']").val();
     var phone = jQuery("input[name='phone']").val();
-    console.log(name, phone);
     var user = {
             "name": name,
             "phone": phone
         }
     var jsonuser = JSON.stringify(user);
-    console.log(jsonuser);
     jQuery.ajax({
         type: "POST",
         contentType: "application/json;",
@@ -120,15 +118,34 @@ function add_user(){
     });
 
 }
+function add_book(){
+    var title = jQuery("input[name='book_title']").val();
+    var book = {
+            "title": title
+        }
+    var jsonbook = JSON.stringify(book);
+    jQuery.ajax({
+        type: "POST",
+        contentType: "application/json;",
+        data: jsonbook,
+        url: "http://localhost:8080/raamatukogu/addbook",
+        success: function(data) {
+             get_available_books();
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {}
+    });
 
+}
 jQuery(document).ready(function() {
     jQuery(".add_user button").click(function(){
         add_user();
-        getPeople();
         jQuery("input[name='phone']").val('');
         jQuery("input[name='name']").val('');
     });
-
+    jQuery(".add_book button").click(function(){
+        add_book();
+        jQuery("input[name='book_title']").val('');
+    });
     get_unavailable_books();
     get_available_books();
 });

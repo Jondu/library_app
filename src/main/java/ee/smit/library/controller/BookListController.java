@@ -32,7 +32,7 @@ public class BookListController {
         return ResponseEntity.ok(loanService.getUnavailableBooks());
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/addbook", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity addBook(@RequestBody Book book) {
         booksService.addBook(book);
