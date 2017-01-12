@@ -1,10 +1,10 @@
 package ee.smit.library.service;
 
 import ee.smit.library.dao.BooksDao;
-import ee.smit.library.dao.PeopleDao;
+import ee.smit.library.dao.UserDao;
 import ee.smit.library.entity.Book;
 import ee.smit.library.entity.LoanedBook;
-import ee.smit.library.entity.Person;
+import ee.smit.library.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,13 +20,13 @@ public class LoanService {
     private BooksDao booksDao;
 
     @Autowired
-    private PeopleDao peopleDao;
+    private UserDao userDao;
 
     public void loan (LoanedBook loanedBook){
         Book book = loanedBook.getBook();
-        Person person = loanedBook.getLoanedTo();
+        User user = loanedBook.getLoanedTo();
         booksDao.lendBook(book);
-        peopleDao.lendBook(person,booksDao.findBookByName(book));
+        userDao.lendBook(user,booksDao.findBookByName(book));
 
     }
 
@@ -40,8 +40,8 @@ public class LoanService {
 
     public void returnBook(LoanedBook loanedBook) {
         Book book = loanedBook.getBook();
-        Person person = loanedBook.getLoanedTo();
+        User user = loanedBook.getLoanedTo();
         booksDao.returnBook(book);
-        peopleDao.returnBook(person);
+        userDao.returnBook(user);
     }
 }

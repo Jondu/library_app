@@ -1,7 +1,7 @@
 package ee.smit.library.dao;
 
 import ee.smit.library.entity.Book;
-import ee.smit.library.entity.Person;
+import ee.smit.library.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -12,42 +12,49 @@ import java.util.List;
  * Created by Hando.
  */
 @Repository
-public class PeopleDao {
+public class UserDao {
     @Autowired
     protected JdbcTemplate jdbcTemplate;
 
-    public List<Person> getAvailablePeople() {
+    public List<User> getAvailablePeople() {
         return jdbcTemplate.query("SELECT name, phone, id FROM people WHERE NOT EXISTS (SELECT * FROM raamatud WHERE raamatud.id = people.book_id )",
                 (rs, rowNum) -> {
-                    Person person = new Person();
-                    person.setName(rs.getString("name"));
-                    person.setId(rs.getLong("id"));
-                    person.setPhone(rs.getLong("phone"));
-                    return person;
+                    User user = new User();
+                    user.setName(rs.getString("name"));
+                    user.setId(rs.getLong("id"));
+                    user.setPhone(rs.getLong("phone"));
+                    return user;
                 }
         );
     }
 
-    public void lendBook(Person person, Book book) {
+    public void lendBook(User user, Book book) {
         jdbcTemplate.update(
                 "UPDATE people SET book_id=(?) WHERE id=(?)",
-                book.getId(), person.getId()
+                book.getId(), user.getId()
         );
 
     }
 
-    public void returnBook(Person person) {
+    public void returnBook(User user) {
         jdbcTemplate.update(
                 "UPDATE people SET book_id=NULL WHERE id=(?)",
-                person.getId()
+                user.getId()
         );
 
     }
 
-    public void addUser(Person person) {
+    public void addUser(User user) {
         jdbcTemplate.update(
                 "INSERT INTO people (name, phone) VALUES (?,?)",
-                person.getName(), person.getPhone()
+                user.getName(), user.getPhone()
+        );
+    }
+
+    public void deleteUser(User user) {
+        jdbcTemplate.update(
+                "DELETE FROM people WHERE name=(?)",
+                user.getName()
         );
     }
 }

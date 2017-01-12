@@ -31,5 +31,8 @@ dependencies {
     compile('org.projectlombok:lombok')
     compile('org.springframework.boot:spring-boot-starter-jdbc')
     runtime('org.postgresql:postgresql')
+    // https://mvnrepository.com/artifact/com.jayway.restassured/rest-assured
+    compile group: 'com.jayway.restassured', name: 'rest-assured', version: '2.9.0'
+
 
 }

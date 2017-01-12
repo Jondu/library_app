@@ -6,12 +6,12 @@ package ee.smit.library.entity;
 public class LoanedBook {
 
     private Book book;
-    private Person loanedTo;
+    private User loanedTo;
 
     public LoanedBook() {
     }
 
-    public LoanedBook(Book book, Person loanedTo) {
+    public LoanedBook(Book book, User loanedTo) {
         this.book = book;
         this.loanedTo = loanedTo;
     }
@@ -24,11 +24,11 @@ public class LoanedBook {
         this.book = book;
     }
 
-    public Person getLoanedTo() {
+    public User getLoanedTo() {
         return loanedTo;
     }
 
-    public void setLoanedTo(Person loanedTo) {
+    public void setLoanedTo(User loanedTo) {
         this.loanedTo = loanedTo;
     }
 }

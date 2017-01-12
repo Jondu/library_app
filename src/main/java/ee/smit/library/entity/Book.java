@@ -3,13 +3,12 @@ package ee.smit.library.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.validation.constraints.NotNull;
-
 /**
  * Created by Hando.
  */
 public class Book {
 
+    @JsonIgnore
     private Long id;
 
     @NotEmpty

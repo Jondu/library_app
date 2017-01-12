@@ -17,5 +17,7 @@ public class BooksService {
     public void addBook(Book book) {
         booksDao.addBook(book);
     }
-
+    public void deleteBook(Book book) {
+        booksDao.deleteBook(book.getTitle());
+    }
 }

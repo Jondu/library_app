@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
  * Created by Hando.
  */
 
-public class Person {
+public class User {
 
     private Long id;
 

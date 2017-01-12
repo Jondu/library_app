@@ -1,7 +1,7 @@
 package ee.smit.library.service;
 
-import ee.smit.library.dao.PeopleDao;
-import ee.smit.library.entity.Person;
+import ee.smit.library.dao.UserDao;
+import ee.smit.library.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +14,18 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    private PeopleDao peopleDao;
+    private UserDao userDao;
 
-    public List<Person> getAvailablePeople() {
-        return peopleDao.getAvailablePeople();
+    public List<User> getAvailablePeople() {
+        return userDao.getAvailablePeople();
     }
 
 
-    public void addUser(Person person) {
-        peopleDao.addUser(person);
+    public void addUser(User user) {
+        userDao.addUser(user);
+    }
+
+    public void deleteUser(User user){
+        userDao.deleteUser(user);
     }
 }
