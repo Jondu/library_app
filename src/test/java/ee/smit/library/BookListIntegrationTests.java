@@ -1,8 +1,6 @@
 package ee.smit.library;
 
 import com.jayway.restassured.RestAssured;
-import ee.smit.library.dao.BooksDao;
-import ee.smit.library.dao.UserDao;
 import ee.smit.library.entity.Book;
 import ee.smit.library.entity.LoanedBook;
 import ee.smit.library.entity.User;
@@ -28,7 +26,7 @@ import static org.hamcrest.Matchers.containsString;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class RestTest {
+public class BookListIntegrationTests {
 
 
     private static Book testbook;
@@ -85,8 +83,9 @@ public class RestTest {
 
     @Test
     public void availableBooksTest() {
+        booksService.addBook(testbook);
         given().when().get("/books").then()
-                .body(containsString("batman"));
+                .body(containsString(testbook.getTitle()));
     }
 
     @Test

@@ -18,7 +18,7 @@ public class PeopleController {
 
     @RequestMapping(value = "/people", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public ResponseEntity returnBook() {
+    public ResponseEntity availablePeople() {
         return ResponseEntity.ok(userService.getAvailablePeople());
     }
 
